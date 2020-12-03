@@ -1,19 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom/server'
 import { StaticRouter } from 'react-router-dom'
-import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
-import thunk from 'redux-thunk'
 import Routes from '../Routes'
+import getStore from '../store'
 
 export const render = (req) => {
-  const reducer = (state = { name: 'jelly' }, action) => {
-    return state;
-  }
-  const store = createStore(reducer, applyMiddleware(thunk));
   const content = ReactDOM.renderToString((
-    <Provider store={store}>
-      <StaticRouter location={req.path} context={{ store }}>
+    <Provider store={getStore()}> // keep store unique for every user.
+      <StaticRouter location={req.path} context={{ }}>
         {Routes}
       </StaticRouter>
     </Provider>
