@@ -7,8 +7,9 @@ import getStore from '../store'
 
 export const render = (req) => {
   const content = ReactDOM.renderToString((
-    <Provider store={getStore()}> // keep store unique for every user.
-      <StaticRouter location={req.path} context={{ }}>
+    // keep store unique for every user. 
+    <Provider store={getStore()}>
+      <StaticRouter location={req.path} context={{}}>
         {Routes}
       </StaticRouter>
     </Provider>
