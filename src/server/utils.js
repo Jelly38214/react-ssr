@@ -1,13 +1,22 @@
 import React from 'react'
 import ReactDOM from 'react-dom/server'
 import { StaticRouter } from 'react-router-dom'
+import { createStore, applyMiddleware } from 'redux'
+import { Provider } from 'react-redux'
+import thunk from 'redux-thunk'
 import Routes from '../Routes'
 
 export const render = (req) => {
+  const reducer = (state = { name: 'jelly' }, action) => {
+    return state;
+  }
+  const store = createStore(reducer, applyMiddleware(thunk));
   const content = ReactDOM.renderToString((
-    <StaticRouter location={req.path} context={{}}>
-      {Routes}
-    </StaticRouter>
+    <Provider store={store}>
+      <StaticRouter location={req.path} context={{ store }}>
+        {Routes}
+      </StaticRouter>
+    </Provider>
   ))
 
   return `
