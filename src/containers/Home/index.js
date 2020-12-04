@@ -8,6 +8,7 @@ const Home = () => {
   const homeState = useSelector(state => state.home)
   const dispatch = useDispatch();
 
+  // componentDidMount在服务端不执行
   useEffect(() => {
     dispatch(getHomeList())
   }, [])
@@ -22,6 +23,11 @@ const Home = () => {
       <button onClick={() => alert('click')}>Click</button>
     </div>
   )
+}
+
+// This function uses to get route dependency data before server render
+Home.loadData = () => {
+
 }
 
 
