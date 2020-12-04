@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { connect, useDispatch, useSelector } from 'react-redux'
 import Header from '../../components/Header'
 import { getHomeList } from './store/actions'
@@ -8,19 +8,22 @@ const Home = () => {
   const homeState = useSelector(state => state.home)
   const dispatch = useDispatch();
 
-  // componentDidMount在服务端不执行
+  // This hook will not execute on server side.
   useEffect(() => {
-    dispatch(getHomeList())
+    if (!homeState.newsList.length) {
+      dispatch(getHomeList())
+    }
   }, [])
+
+  function a() {
+    return homeState.newsList.map(item => <div key={item.menuUrl}>{item.menuName}</div>)
+  }
 
   return (
     <div>
       <Header />
-      {
-        homeState.newsList.map(item => <p key={item.menuUrl}>{item.menuName}</p>)
-      }
-      {homeState.name}
-      <button onClick={() => alert('click')}>Click</button>
+      {a()}
+      {/* <button onClick={() => alert('click')}>Click</button> */}
     </div>
   )
 }

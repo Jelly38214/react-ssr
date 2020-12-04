@@ -2,7 +2,7 @@ import express from 'express'
 import { render } from './utils'
 import { matchRoutes } from 'react-router-config'
 import Routes from '../Routes'
-import getStore from '../store'
+import { getStore } from '../store'
 
 const app = express()
 app.use(express.static('public'))
