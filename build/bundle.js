@@ -202,7 +202,7 @@ eval("\n\nvar _express = __webpack_require__(/*! express */ \"express\");\n\nvar
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.render = undefined;\n\nvar _react = __webpack_require__(/*! react */ \"react\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _server = __webpack_require__(/*! react-dom/server */ \"react-dom/server\");\n\nvar _server2 = _interopRequireDefault(_server);\n\nvar _reactRouterDom = __webpack_require__(/*! react-router-dom */ \"react-router-dom\");\n\nvar _reactRedux = __webpack_require__(/*! react-redux */ \"react-redux\");\n\nvar _Routes = __webpack_require__(/*! ../Routes */ \"./src/Routes.js\");\n\nvar _Routes2 = _interopRequireDefault(_Routes);\n\nvar _store = __webpack_require__(/*! ../store */ \"./src/store/index.js\");\n\nvar _store2 = _interopRequireDefault(_store);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n// 在这里，拿到异步数据，并填充到store之中\n// store里面到底填充什么并不知道 ，需要结合当前访问的路径和路由做判断\n// 如果用户访问 / 路径，我们就拿home组件的异步数据\n// 如果用户访问 /login 路径，我们就拿login组件的异步数据\n\n// 根据路由的路径，往store里面加载数据\n\nvar render = exports.render = function render(req) {\n  var store = (0, _store2.default)();\n  var matchRoutes = [];\n  _Routes2.default.forEach(function (route) {\n    if ((0, _reactRouterDom.matchPath)(req.path, route)) matchRoutes.push(route);\n  });\n  // 让matchRoutes里面的所有的组件，对应的loadData方法执行一次\n\n  var content = _server2.default.renderToString(\n  // keep store unique for every user. \n  _react2.default.createElement(\n    _reactRedux.Provider,\n    { store: store },\n    _react2.default.createElement(\n      _reactRouterDom.StaticRouter,\n      { location: req.path, context: {} },\n      _react2.default.createElement(\n        _reactRouterDom.Switch,\n        null,\n        _Routes2.default.map(function (item) {\n          return _react2.default.createElement(_reactRouterDom.Route, item);\n        })\n      )\n    )\n  ));\n\n  return '\\n  <html>\\n    <head>\\n      <title>ssr</title> \\n    </head> \\n    <body>\\n      <div id=\"root\">' + content + '</div> \\n      <script src=\\'/index.js\\'></script>\\n    </body>\\n  </html> \\n';\n};\n\n//# sourceURL=webpack:///./src/server/utils.js?");
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.render = undefined;\n\nvar _react = __webpack_require__(/*! react */ \"react\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _server = __webpack_require__(/*! react-dom/server */ \"react-dom/server\");\n\nvar _server2 = _interopRequireDefault(_server);\n\nvar _reactRouterDom = __webpack_require__(/*! react-router-dom */ \"react-router-dom\");\n\nvar _reactRouterConfig = __webpack_require__(/*! react-router-config */ \"react-router-config\");\n\nvar _reactRedux = __webpack_require__(/*! react-redux */ \"react-redux\");\n\nvar _Routes = __webpack_require__(/*! ../Routes */ \"./src/Routes.js\");\n\nvar _Routes2 = _interopRequireDefault(_Routes);\n\nvar _store = __webpack_require__(/*! ../store */ \"./src/store/index.js\");\n\nvar _store2 = _interopRequireDefault(_store);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n// 在这里，拿到异步数据，并填充到store之中\n// store里面到底填充什么并不知道 ，需要结合当前访问的路径和路由做判断\n// 如果用户访问 / 路径，我们就拿home组件的异步数据\n// 如果用户访问 /login 路径，我们就拿login组件的异步数据\n\n// 根据路由的路径，往store里面加载数据\n\nvar render = exports.render = function render(req) {\n  var store = (0, _store2.default)();\n  var matchedRoutes = (0, _reactRouterConfig.matchRoutes)(_Routes2.default, req.path);\n  // 让matchRoutes里面的所有的组件，对应的loadData方法执行一次\n  console.log(matchedRoutes, 'iiiiiiiii', req.path);\n\n  var content = _server2.default.renderToString(\n  // keep store unique for every user. \n  _react2.default.createElement(\n    _reactRedux.Provider,\n    { store: store },\n    _react2.default.createElement(\n      _reactRouterDom.StaticRouter,\n      { location: req.path, context: {} },\n      _react2.default.createElement(\n        _reactRouterDom.Switch,\n        null,\n        _Routes2.default.map(function (item) {\n          return _react2.default.createElement(_reactRouterDom.Route, item);\n        })\n      )\n    )\n  ));\n\n  return '\\n  <html>\\n    <head>\\n      <title>ssr</title> \\n    </head> \\n    <body>\\n      <div id=\"root\">' + content + '</div> \\n      <script src=\\'/index.js\\'></script>\\n    </body>\\n  </html> \\n';\n};\n\n//# sourceURL=webpack:///./src/server/utils.js?");
 
 /***/ }),
 
@@ -270,6 +270,17 @@ eval("module.exports = require(\"react-dom/server\");\n\n//# sourceURL=webpack:/
 /***/ (function(module, exports) {
 
 eval("module.exports = require(\"react-redux\");\n\n//# sourceURL=webpack:///external_%22react-redux%22?");
+
+/***/ }),
+
+/***/ "react-router-config":
+/*!**************************************!*\
+  !*** external "react-router-config" ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"react-router-config\");\n\n//# sourceURL=webpack:///external_%22react-router-config%22?");
 
 /***/ }),
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/server'
-import { matchPath, StaticRouter, Route, Switch } from 'react-router-dom'
+import { StaticRouter, Route, Switch } from 'react-router-dom'
+import { matchRoutes, renderRoutes } from 'react-router-config'
 import { Provider } from 'react-redux'
 import Routes from '../Routes'
 import getStore from '../store'
@@ -14,11 +15,9 @@ import getStore from '../store'
 
 export const render = (req) => {
   const store = getStore();
-  const matchRoutes = [];
-  Routes.forEach(route => {
-    if (matchPath(req.path, route)) matchRoutes.push(route)
-  })
+  const matchedRoutes = matchRoutes(Routes, req.path)
   // 让matchRoutes里面的所有的组件，对应的loadData方法执行一次
+  console.log(matchedRoutes, 'iiiiiiiii', req.path)
 
   const content = ReactDOM.renderToString((
     // keep store unique for every user. 
