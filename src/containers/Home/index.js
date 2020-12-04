@@ -26,8 +26,8 @@ const Home = () => {
 }
 
 // This function uses to get route dependency data before server render
-Home.loadData = () => {
-
+Home.loadData = (store) => {
+  return store.dispatch(getHomeList())
 }
 
 
