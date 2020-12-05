@@ -15,15 +15,13 @@ const Home = () => {
     }
   }, [])
 
-  function a() {
-    return homeState.newsList.map(item => <div key={item.menuUrl}>{item.menuName}</div>)
-  }
-
   return (
     <div>
       <Header />
-      {a()}
-      {/* <button onClick={() => alert('click')}>Click</button> */}
+      {
+        homeState.newsList.map(item => <div key={item.menuUrl}>{item.menuName}</div>)
+      }
+      <button onClick={() => alert('click')}>Click</button>
     </div>
   )
 }

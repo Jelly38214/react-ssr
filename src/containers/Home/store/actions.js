@@ -7,10 +7,9 @@ export const changeList = (list) => ({
   list
 })
 
-export const getHomeList = () => {
-  return (dispatch) => {
-    return axios.get('https://cz.droomo.top/mock/5dbfda1488b2265d7e2525b2/common/api/menus', { httpsAgent: new https.Agent({ rejectUnauthorized: false }) }).then((res) => {
-      console.log('axios:', res.data)
+export const getHomeList = (server = true) => {
+  return (dispatch, getState, axiosInstance) => {
+    return axiosInstance.get('/common/api/menus', { httpsAgent: new https.Agent({ rejectUnauthorized: false }) }).then((res) => {
       const list = res.data
       dispatch(changeList(list))
     })
