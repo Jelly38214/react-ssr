@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/server'
 import { StaticRouter, Route, Switch } from 'react-router-dom'
+import {renderRoutes} from 'react-router-config'
 import { Provider } from 'react-redux'
 
 // 在这里，拿到异步数据，并填充到store之中
@@ -17,7 +18,7 @@ export const render = (store, Routes, req) => {
     <Provider store={store}>
       <StaticRouter location={req.path} context={{}}>
         <Switch>
-          {Routes.map(item => <Route {...item} />)}
+          {renderRoutes(Routes)}
         </Switch>
       </StaticRouter>
     </Provider>

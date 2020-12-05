@@ -17,7 +17,6 @@ const Home = () => {
 
   return (
     <div>
-      <Header />
       {
         homeState.newsList.map(item => <div key={item.menuUrl}>{item.menuName}</div>)
       }

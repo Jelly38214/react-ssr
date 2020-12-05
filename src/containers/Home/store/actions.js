@@ -1,4 +1,3 @@
-import axios from 'axios'
 const https = require('https');
 import { CHANGE_LIST } from './constants'
 
