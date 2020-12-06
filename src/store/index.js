@@ -12,7 +12,7 @@ const reducer = combineReducers({
 })
 
 
-export const getStore = () => createStore(reducer, applyMiddleware(thunk.withExtraArgument(serverRequest)))
+export const getStore = (req) => createStore(reducer, applyMiddleware(thunk.withExtraArgument(serverRequest(req))))
 
 export const getClientStore = () => {
   const defaultState = window.context.state;

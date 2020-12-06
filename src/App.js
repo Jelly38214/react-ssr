@@ -13,5 +13,5 @@ export const App = (props) => {
 }
 
 App.loadData = (store) => {
-  store.dispatch(headerComponentActions.getHeaderInfo())
+  return store.dispatch(headerComponentActions.getHeaderInfo())
 }

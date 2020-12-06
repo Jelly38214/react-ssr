@@ -10,7 +10,7 @@ app.use(express.static('public'))
 app.use('/nodeapi', createProxyMiddleware({ target: 'https://cz.droomo.top/mock/5bf3aa57bc19540767dd9451/example', pathRewrite: { '^/nodeapi': '' }, secure: false, changeOrigin: true }))
 
 app.get('*', (req, res) => {
-  const store = getStore();
+  const store = getStore(req);
   const matchedRoutes = matchRoutes(Routes, req.path)
 
   // 让matchedRoutes里面的所有的组件，对应的loadData方法执行一次
