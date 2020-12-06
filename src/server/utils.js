@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/server'
-import { StaticRouter, Route, Switch } from 'react-router-dom'
+import { StaticRouter, Switch } from 'react-router-dom'
 import {renderRoutes} from 'react-router-config'
 import { Provider } from 'react-redux'
 

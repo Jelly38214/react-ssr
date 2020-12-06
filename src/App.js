@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from './components/Header'
-import {renderRoutes} from 'react-router-config'
+import { renderRoutes } from 'react-router-config'
+import { headerComponentActions } from './components/Header/store'
 
 export const App = (props) => {
   return (
@@ -9,4 +10,8 @@ export const App = (props) => {
       {renderRoutes(props.route.routes)}
     </div>
   )
+}
+
+App.loadData = (store) => {
+  store.dispatch(headerComponentActions.getHeaderInfo())
 }

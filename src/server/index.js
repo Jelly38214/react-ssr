@@ -1,5 +1,4 @@
 import express from 'express'
-import proxy from 'express-http-proxy'
 import { createProxyMiddleware } from 'http-proxy-middleware'
 import { render } from './utils'
 import { matchRoutes } from 'react-router-config'
@@ -8,7 +7,7 @@ import { getStore } from '../store'
 
 const app = express()
 app.use(express.static('public'))
-app.use('/nodeapi', createProxyMiddleware({ target: 'https://cz.droomo.top/mock/5dbfda1488b2265d7e2525b2', pathRewrite: { '^/nodeapi': '' }, secure: false, changeOrigin: true }))
+app.use('/nodeapi', createProxyMiddleware({ target: 'https://cz.droomo.top/mock/5bf3aa57bc19540767dd9451/example', pathRewrite: { '^/nodeapi': '' }, secure: false, changeOrigin: true }))
 
 app.get('*', (req, res) => {
   const store = getStore();

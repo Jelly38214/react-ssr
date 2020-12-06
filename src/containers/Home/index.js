@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { connect, useDispatch, useSelector } from 'react-redux'
-import Header from '../../components/Header'
 import { getHomeList } from './store/actions'
 // 同构： 一套在服务端执行一次(生成内容)，客户端执行一次(绑定事件)
 
