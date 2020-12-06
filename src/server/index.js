@@ -16,13 +16,20 @@ app.get('*', (req, res) => {
   // 让matchedRoutes里面的所有的组件，对应的loadData方法执行一次
   const promises = [];
   matchedRoutes.forEach(item => {
-    if (item.route.loadData) promises.push(item.route.loadData(store))
+    if (item.route.loadData) {
+      const _promise = new Promise((resolve, reject) => {
+        item.route.loadData(store).then(resolve).catch(resolve)
+      })
+
+      promises.push(_promise)
+    } 
   })
+
   Promise.all(promises).then(() => {
     const context = {};
     const html = render(store, Routes, req, context);
 
-    // 301
+    // 301, 需要Redirect组件配置使用
     if (context.action === 'REPLACE') {
       res.redirect(301, context.action.url)
     }
