@@ -11,12 +11,12 @@ import { Provider } from 'react-redux'
 
 // 根据路由的路径，往store里面加载数据
 
-export const render = (store, Routes, req) => {
+export const render = (store, Routes, req, context) => {
 
   const content = ReactDOM.renderToString((
     // keep store unique for every user. 
     <Provider store={store}>
-      <StaticRouter location={req.path} context={{}}>
+      <StaticRouter location={req.path} context={context}>
         <Switch>
           {renderRoutes(Routes)}
         </Switch>

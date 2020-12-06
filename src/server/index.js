@@ -19,7 +19,12 @@ app.get('*', (req, res) => {
     if (item.route.loadData) promises.push(item.route.loadData(store))
   })
   Promise.all(promises).then(() => {
-    res.send(render(store, Routes, req));
+    const context = {};
+    const html = render(store, Routes, req, context);
+    if(context.NotFound) {
+      res.status(404)
+    }
+    res.send(html);
   })
 })
 

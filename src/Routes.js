@@ -1,6 +1,7 @@
 import React from 'react'
 import Home from './containers/Home'
 import Login from './containers/Login'
+import NotFound from './containers/NotFound'
 import { App } from './App'
 
 export default [
@@ -22,6 +23,9 @@ export default [
         component: Login,
         exact: true,
         key: 'login'
+      },
+      {
+        component: NotFound,
       }
     ]
   }
