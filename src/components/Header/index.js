@@ -2,10 +2,13 @@ import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { headerComponentActions } from './store'
+import styles from './index.css'
+console.log('xxxxxxxxxxx',styles)
 
 const Header = (props) => {
+  console.log('props', props, styles)
   return (
-    <div>
+    <div className={styles.test}>
       <Link to="/">Home</Link>
       <br />
       {

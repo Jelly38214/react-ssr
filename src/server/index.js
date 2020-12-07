@@ -26,7 +26,7 @@ app.get('*', (req, res) => {
   })
 
   Promise.all(promises).then(() => {
-    const context = {};
+    const context = {css: []};
     const html = render(store, Routes, req, context);
 
     // 301, 需要Redirect组件配置使用

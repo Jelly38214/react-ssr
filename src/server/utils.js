@@ -24,11 +24,14 @@ export const render = (store, Routes, req, context) => {
     </Provider>
   ))
 
+  const cssString = context.css.join('\n')
+
   return (
     `
       <html>
       <head>
         <title>ssr</title> 
+        ${cssString && `<style type="text/css">${cssString}</style>`}
       </head> 
       <body>
         <div id="root">${content}</div> 

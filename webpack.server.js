@@ -21,6 +21,19 @@ module.exports = {
             browsers: ['last 2 versions']
           }]]
         }
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'isomorphic-style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: true
+            }
+          }
+        ]
       }
     ]
   }
