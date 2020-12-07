@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react'
 import { connect, useDispatch, useSelector } from 'react-redux'
 import { getHomeList } from './store/actions'
 import styles from './style.css'
+import withStyle from '../../withStyle'
 // 同构： 一套在服务端执行一次(生成内容)，客户端执行一次(绑定事件)
 
 const Home = (props) => {
@@ -15,10 +16,6 @@ const Home = (props) => {
     }
   }, [])
 
-  if(props.staticContext) {
-    props.staticContext.css.push(styles._getCss())
-  }
-
   return (
     <div className={styles.test}>
       {
@@ -29,10 +26,13 @@ const Home = (props) => {
   )
 }
 
+
+const HomeWithStyle = withStyle(Home, styles);
 // This function uses to get route dependency data before server render
-Home.loadData = (store) => {
+HomeWithStyle.loadData = (store) => {
   return store.dispatch(getHomeList())
 }
 
 
-export default Home
+
+export default HomeWithStyle 

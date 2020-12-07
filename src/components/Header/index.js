@@ -3,10 +3,9 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { headerComponentActions } from './store'
 import styles from './index.css'
-console.log('xxxxxxxxxxx',styles)
+import withStyle from '../../withStyle'
 
 const Header = (props) => {
-  console.log('props', props, styles)
   return (
     <div className={styles.test}>
       <Link to="/">Home</Link>
@@ -32,4 +31,4 @@ const mapDispatch = (dispatch) => ({
   }
 })
 
-export default connect(mapState, mapDispatch)(Header) 
+export default connect(mapState, mapDispatch)(withStyle(Header, styles)) 
