@@ -3,6 +3,7 @@ import { connect, useDispatch, useSelector } from 'react-redux'
 import { getHomeList } from './store/actions'
 import styles from './style.css'
 import withStyle from '../../withStyle'
+import { Helmet } from 'react-helmet'
 // 同构： 一套在服务端执行一次(生成内容)，客户端执行一次(绑定事件)
 
 const Home = (props) => {
@@ -18,6 +19,9 @@ const Home = (props) => {
 
   return (
     <div className={styles.test}>
+      <Helmet>
+        <title>Home Page</title>
+      </Helmet>
       {
         homeState.newsList.map(item => <div key={item.menuUrl}>{item.menuName}</div>)
       }

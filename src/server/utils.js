@@ -1,8 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom/server'
 import { StaticRouter, Switch } from 'react-router-dom'
-import {renderRoutes} from 'react-router-config'
+import { renderRoutes } from 'react-router-config'
 import { Provider } from 'react-redux'
+import { Helmet } from 'react-helmet'
 
 // 在这里，拿到异步数据，并填充到store之中
 // store里面到底填充什么并不知道 ，需要结合当前访问的路径和路由做判断
@@ -23,6 +24,7 @@ export const render = (store, Routes, req, context) => {
       </StaticRouter>
     </Provider>
   ))
+  const helmet = Helmet.renderStatic()
 
   const cssString = context.css.join('\n')
 
@@ -30,7 +32,8 @@ export const render = (store, Routes, req, context) => {
     `
       <html>
       <head>
-        <title>ssr</title> 
+        ${helmet.title.toString()}
+        ${helmet.meta.toString()}
         ${cssString && `<style type="text/css">${cssString}</style>`}
       </head> 
       <body>
